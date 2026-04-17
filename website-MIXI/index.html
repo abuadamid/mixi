@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MIXI | Mitsubishi Xpander Indonesia - Komunitas Xpander Terbesar</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      transition: all 0.3s ease;
+      scroll-behavior: smooth;
+    }
+
+    p, .about-text, .hero p, .section-sub, .subdivisi, .pengurus-item span:last-child, 
+    .kegiatan-card p, .event-card p, .news-card p, .bg-soft p, footer p {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    h1, h2, h3, h4, h5, .pengurus-name, .region-title, .divisi-title, .chapter-list li {
+      text-align: left;
+    }
+
+    .hero p {
+      text-align: justify;
+      text-align-last: center;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 0;
+      transition: all 0.3s ease;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-img {
+      height: 65px;
+      width: auto;
+      object-fit: contain;
+      max-height: 65px;
+    }
+
+    .logo-text h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .logo-text p {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      transition: 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a:hover {
+      color: #ff8e53;
+    }
+
+    .lang-toggle {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 30px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: 0.3s;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lang-toggle:hover {
+      background: rgba(255, 142, 83, 0.3);
+      border-color: #ff8e53;
+    }
+
+    .lang-toggle i {
+      font-size: 0.8rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #ff8e53;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #ff8e53;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 142, 83, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .btn-join {
+      background: linear-gradient(135deg, #ff8e53, #ff6b6b);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-join:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    }
+
+    .hero {
+      padding: 50px 0 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .hero .highlight {
+      background: linear-gradient(135deg, #ff6b6b, #ff8e53, #ff6b6b);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: gradientShift 4s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-top: 16px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: justify;
+      text-align-last: center;
+    }
+
+    .hero-img {
+      margin-top: 30px;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      height: 380px;
+    }
+
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top 30% center;
+      display: block;
+    }
+
+    .section-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 24px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    section {
+      margin: 50px 0;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .section-sub {
+      margin-bottom: 32px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1rem;
+      text-align: justify;
+    }
+
+    .floating-buttons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .wa-float {
+      background-color: #25D366;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.1);
+    }
+
+    .wa-float a {
+      color: white;
+      font-size: 24px;
+    }
+
+    footer {
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 35px 0 20px;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icons a {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .social-icons a:hover {
+      color: white;
+      transform: translateY(-5px);
+      background: rgba(255, 107, 107, 0.3);
+    }
+
+    .social-icons a:nth-child(1):hover { background: #E4405F; }
+    .social-icons a:nth-child(2):hover { background: #1877F2; }
+    .social-icons a:nth-child(3):hover { background: #FF0000; }
+    .social-icons a:nth-child(4):hover { background: #000000; }
+    .social-icons a:nth-child(5):hover { background: #D44638; }
+
+    .flex-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 16px 0;
+    }
+
+    .bg-soft {
+      background: rgba(20, 20, 30, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 40px;
+      padding: 32px 24px;
+    }
+
+    .bg-soft p {
+      text-align: justify;
+      text-align-last: center;
+    }
+
+    .chapter-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 8px;
+    }
+
+    .chapter-list li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      padding: 5px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.7);
+      text-align: left;
+    }
+
+    .chapter-number {
+      font-weight: 600;
+      background: rgba(255, 142, 83, 0.15);
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      line-height: 24px;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      margin-right: 4px;
+      color: #ff8e53;
+    }
+
+    .region-badge {
+      background: rgba(255, 142, 83, 0.15);
+      padding: 4px 10px;
+      border-radius: 30px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 10px;
+      color: #ff8e53;
+    }
+
+    .region-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      border-left: 4px solid #ff8e53;
+      padding-left: 14px;
+      color: white;
+      text-align: left;
+    }
+
+    .pengurus-struct h3 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #ff8e53;
+      padding-bottom: 6px;
+      color: white;
+    }
+
+    .pengurus-item {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 6px 0;
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.08);
+      font-size: 0.85rem;
+    }
+
+    .pengurus-item span:last-child {
+      text-align: justify;
+      flex: 1;
+    }
+
+    .pengurus-name {
+      font-weight: 700;
+      min-width: 130px;
+      color: #ff8e53;
+      text-align: left;
+    }
+
+    .badge-chapter {
+      background: rgba(255, 142, 83, 0.15);
+      border-radius: 20px;
+      padding: 2px 8px;
+      font-size: 0.65rem;
+      margin-left: 6px;
+      color: #ff8e53;
+    }
+
+    .subdivisi {
+      margin-top: 6px;
+      margin-left: 16px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
+      text-align: justify;
+    }
+
+    .divisi-title {
+      font-weight: 700;
+      color: #ff8e53;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      border-left: 3px solid #ff8e53;
+      padding-left: 10px;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .news-date {
+      font-size: 0.7rem;
+      color: #ff8e53;
+      margin-bottom: 6px;
+    }
+
+    .news-card p {
+      text-align: justify;
+    }
+
+    .kegiatan-card i, .event-card i {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .kegiatan-card h3, .event-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .kegiatan-card p, .event-card p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: justify;
+    }
+
+    @media (max-width: 900px) {
+      .container { padding: 0 16px; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 16px; }
+      .hero h1 { font-size: 1.8rem; text-align: center; }
+      .hero p { font-size: 0.9rem; }
+      .hero { padding: 30px 0 25px; }
+      .hero-img { height: 200px; }
+      section { margin: 30px 0; }
+      section h2 { font-size: 1.5rem; }
+      .section-sub { margin-bottom: 20px; font-size: 0.9rem; }
+      .nav-container { flex-direction: column; text-align: center; gap: 10px; }
+      .logo { flex-direction: column; justify-content: center; }
+      .logo-img { height: 50px; max-height: 50px; }
+      .logo-text h1 { font-size: 1.3rem; }
+      .logo-text p { font-size: 0.6rem; }
+      .nav-links { justify-content: center; gap: 10px; }
+      .nav-links a { font-size: 0.7rem; }
+      .lang-toggle { padding: 4px 10px; font-size: 0.65rem; }
+      .card, .kegiatan-card, .event-card, .chapter-region-card, .pengurus-struct, .news-card { padding: 14px 12px; }
+      .section-img { height: 140px; margin-bottom: 12px; }
+      .region-title { font-size: 1rem; margin-bottom: 10px; }
+      .chapter-list { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 6px; }
+      .chapter-list li { font-size: 0.75rem; padding: 4px 0; }
+      .bg-soft { padding: 20px 16px; }
+      .flex-btns { gap: 10px; }
+      .btn-primary, .btn-outline, .btn-join { padding: 6px 14px; font-size: 0.75rem; }
+      .pengurus-name { min-width: 90px; font-size: 0.8rem; }
+      .pengurus-item { font-size: 0.75rem; padding: 5px 0; }
+      .social-icons a { width: 38px; height: 38px; font-size: 1.2rem; }
+      .social-icons { gap: 12px; }
+      .subdivisi { font-size: 0.7rem; margin-left: 12px; }
+      .divisi-title { font-size: 0.8rem; }
+      .kegiatan-card h3, .event-card h3 { font-size: 1rem; }
+      .kegiatan-card p, .event-card p { font-size: 0.75rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.3rem; }
+      .hero-img { height: 160px; }
+      .chapter-list { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+      .chapter-list li { font-size: 0.7rem; }
+      .social-icons a { width: 34px; height: 34px; font-size: 1rem; }
+      .social-icons { gap: 10px; }
+      .logo-img { height: 45px; max-height: 45px; }
+      .logo-text h1 { font-size: 1.1rem; }
+      .nav-links a { font-size: 0.65rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-container">
+      <div class="logo">
+        <img class="logo-img" src="mixi.png" alt="MIXI Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="logo-text" style="display: none;">
+          <h1>MIXI</h1>
+          <p>Mitsubishi Xpander Indonesia</p>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#tentang" data-id="nav_tentang">Tentang</a>
+        <a href="#pengurus" data-id="nav_pengurus">Pengurus</a>
+        <a href="#penasehat" data-id="nav_penasehat">Penasehat</a>
+        <a href="#kegiatan" data-id="nav_kegiatan">Kegiatan</a>
+        <a href="#event" data-id="nav_event">Event</a>
+        <a href="#chapter" data-id="nav_chapter">Chapter</a>
+        <a href="#berita" data-id="nav_berita">Berita</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKVqxpjA2BhD-on8IAIjShr4AmKVwvB5pZRcnKH8Dk9U0Vjw/viewform" target="_blank" data-id="nav_join" style="color: #ff8e53;">Joint</a>
+        <button class="lang-toggle" id="lang-toggle"><i class="fas fa-globe"></i> <span id="lang-text">EN</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <div class="container">
+        <h1><span class="highlight">Mitsubishi Xpander Indonesia</span><br><span id="heroTitle">Komunitas Mobil Mitsubishi Xpander</span></h1>
+        <p id="heroDesc">Satu hati, satu rasa, satu aspal "MIXI We Are Family". Menjelajah nusantara dengan kebersamaan dan semangat Keluarga.</p>
+        <div class="hero-img"><img src="bannerweb.png" alt="MIXI"></div>
+        <div class="flex-btns">
+          <button class="btn-primary" id="joinCommunityBtn" data-id="btn_join">Joint Komunitas</button>
+          <button class="btn-outline" id="partnerBtn" data-id="btn_partner">Official Partner</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="tentang">
+      <section>
+        <h2 id="aboutTitle">Tentang MIXI</h2>
+        <div class="grid-2">
+          <div><p id="aboutText">MIXI (Mitsubishi Xpander Indonesia) adalah sebuah wadah prestisius bagi para pemilik dan antusias kendaraan Mitsubishi Xpander di seluruh tanah air. Secara hukum, komunitas ini telah mengukuhkan eksistensinya melalui akta pendirian perkumpulan yang sah dan legal, menjadikannya organisasi otomotif yang akuntabel dan terpercaya.
+
+Visi utama MIXI melampaui sekadar hobi otomotif; kami berkomitmen memupuk tali silaturahmi tanpa batas serta mempererat semangat persaudaraan lintas sektoral di antara para anggotanya. Melalui filosofi "MIXI We Are Family", secara konsisten menyelenggarakan berbagai program inovatif dan kegiatan positif yang dirancang khusus untuk melibatkan seluruh elemen keluarga. Mulai dari kegiatan touring edukatif, aksi sosial kemanusiaan, hingga pertemuan rutin yang edukatif, setiap agenda MIXI bertujuan untuk memberikan nilai tambah bagi member sekaligus membangun dampak nyata yang bermanfaat bagi masyarakat luas.</p></div>
+          <div><img src="bekasi touring.jpg" style="width:100%; border-radius:28px; height:220px; object-fit:cover;"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- DEWAN PENASEHAT MIXI NASIONAL -->
+    <div class="container" id="penasehat">
+      <section>
+        <h2 id="penasehatTitle">Dewan Penasehat MIXI Nasional</h2>
+        <p class="section-sub" id="penasehatSub">Para tokoh dan sesepuh yang memberikan arahan, bimbingan, serta nasihat untuk kemajuan dan keberkahan komunitas MIXI.</p>
+        <div class="grid-4">
+          <div class="pengurus-struct card">
+            <h3><i class="fas fa-user-tie"></i> <span data-id="advisor1">Penasehat 1</span></h3>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="name">Nama:</span><span>Toni Kurniawan</span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="id_member">ID Member:</span><span>MIXI-0001</span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="chapter">Asal Chapter:</span><span>Sumatera Barat / Padang</span></div>
+          </div>
+          <div class="pengurus-struct card">
+            <h3><i class="fas fa-user-tie"></i> <span data-id="advisor2">Penasehat 2</span></h3>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="name">Nama:</span><span>Subagya (Yoyo)</span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="id_member">ID Member:</span><span>MIXI-0366</span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="chapter">Asal Chapter:</span><span>Jakarta</span></div>
+          </div>
+          <div class="pengurus-struct card">
+            <h3><i class="fas fa-user-tie"></i> <span data-id="advisor3">Penasehat 3</span></h3>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="name">Nama:</span><span>Asep Muchdar</span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="id_member">ID Member:</span><span>MIXI-0020</span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="chapter">Asal Chapter:</span><span>Bandung</span></div>
+          </div>
+          <div class="pengurus-struct card">
+            <h3><i class="fas fa-user-tie"></i> <span data-id="advisor4">Penasehat 4</span></h3>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="name">Nama:</span><span>Eko Asrianto (EAS)</span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="id_member">ID Member:</span><span>MIXI-0238</span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="chapter">Asal Chapter:</span><span>Bekasi</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container" id="pengurus">
+      <section>
+        <h2 id="pengurusTitle">Pengurus Nasional 2024-2027</h2>
+        <p class="section-sub" id="pengurusSub">Kepengurusan periode 2024-2027 | Semangat Kolaborasi untuk kemajuan komunitas Xpander Indonesia. Seluruh pengurus berkomitmen menjalankan amanah dengan penuh dedikasi dan integritas.</p>
+        <div class="grid-2">
+          <div class="pengurus-struct card">
+            <h3><i class="fas fa-crown"></i> <span data-id="pimpinan">Pimpinan Utama</span></h3>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="ketua">Ketua Umum:</span><span>Deni Nurdiansyah (2000) <span class="badge-chapter">SUCI</span></span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="wakil">Wakil Ketua:</span><span>Oktavian Barus (0342) <span class="badge-chapter">Bekasi Raya</span></span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="sekretaris">Sekretaris:</span><span>Dede Iswandi (0943) <span class="badge-chapter">Ciayumajakuning</span></span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="bendahara">Bendahara:</span><span>Ria Amilia Rossyah (0971) Yogyakarta & Hadarno Hamka (1392) Bandung</span></div>
+          </div>
+          <div class="pengurus-struct card">
+            <h3><i class="fas fa-users"></i> <span data-id="divisi">Divisi Lengkap</span></h3>
+            
+            <div class="divisi-title" data-id="div_membership">Divisi Membership</div>
+            <div class="subdivisi">• Anasrul (Anas) (0996) – JAKRAY</div>
+            <div class="subdivisi">• Untung Djojo Prajitno (1014) – Semarang</div>
+            <div class="subdivisi">• Nano (0700) – SUCI</div>
+            
+            <div class="divisi-title" data-id="div_otomotif">Divisi Otomotif</div>
+            <div class="subdivisi">• Hardiansyah (Dian) (0959) – Aceh</div>
+            <div class="subdivisi">• Nelson Yonathan (1423) – Jakpol</div>
+            
+            <div class="divisi-title" data-id="div_kegiatan">Divisi Kegiatan</div>
+            <div class="subdivisi">• Immanul Yaqin (Baim) (1445) – Sumatera Barat</div>
+            <div class="subdivisi">• Taufik (0269) – Bekasi</div>
+            <div class="subdivisi">• Suyadi (1422) – Yogyakarta</div>
+            <div class="subdivisi">• Nov Rizal Frans Darisma (1048) – Jakpol</div>
+            
+            <div class="divisi-title" data-id="div_kominfo">Divisi Kominfo</div>
+            <div class="subdivisi">• Bhakti Prambanan (0486) – Bandung</div>
+            <div class="subdivisi">• Hariki (0685) – JAKRAY</div>
+            <div class="subdivisi">• Fahmi Al Syahid (1426) – Jakpol</div>
+            <div class="subdivisi">• Arul Walidin (1692) – Aceh</div>
+            
+            <div class="divisi-title" data-id="div_legal">Divisi Legal dan Keamanan</div>
+            <div class="subdivisi">• Ronald Andy H. (0070) – Semarang</div>
+            <div class="subdivisi">• Ari Yuniarto (Arjun) (1019) – Bandung</div>
+            
+            <div class="divisi-title" data-id="div_sosial">Divisi Sosial Kemasyarakatan</div>
+            <div class="subdivisi">• Dedy Darmadi (1089) – Surabaya</div>
+            <div class="subdivisi">• Ishak (1324) – Yogyakarta</div>
+            <div class="subdivisi">• Lily Kurniawati (1032) – Bandung</div>
+            
+            <div class="divisi-title" data-id="div_kemitraan">Divisi Kemitraan dan Dana Usaha</div>
+            <div class="subdivisi">• Calvin Jatmika Pang (1545) – Semarang</div>
+            <div class="subdivisi">• Agus Rohman (0849) – Ciayumajakuning</div>
+          </div>
+        </div>
+        <div style="margin-top: 20px;">
+          <div class="pengurus-struct card">
+            <h3><i class="fas fa-map-marked-alt"></i> <span data-id="korwil">Koordinator Wilayah (Korwil)</span></h3>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="korwil3">Korwil III (Jawa Barat):</span><span>Dirman (1274)</span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="korwil4">Korwil IV (Jateng - DIY):</span><span>Jalu Priambodo (1818)</span></div>
+            <div class="pengurus-item"><span class="pengurus-name" data-id="korwil5">Korwil V (Jawa Timur):</span><span>Krisetyawanti Cienta Nana (0386)</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- KEGIATAN MIXI -->
+    <div class="container" id="kegiatan">
+      <section>
+        <h2 id="kegiatanTitle">Kegiatan MIXI</h2>
+        <p class="section-sub" id="kegiatanSub">Berbagai kegiatan rutin, tahunan, dan insidental yang kami selenggarakan untuk mempererat silaturahmi dan mengembangkan potensi anggota.</p>
+        
+        <div class="grid-4">
+          <div class="kegiatan-card card"><i class="fas fa-map-marked-alt"></i><img class="section-img" src="mixi bdg11.jpg" alt="Touring" onerror="this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=200&fit=crop'"><h3 data-id="tour">Touring</h3><p data-id="tour_desc">Jelajahi keindahan Indonesia dengan konvoi Xpander bersama anggota dari berbagai chapter.</p></div>
+          <div class="kegiatan-card card"><i class="fas fa-mug-hot"></i><img class="section-img" src="mixi bdg 6.jpg" alt="Kopdar" onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=200&fit=crop'"><h3 data-id="kopdar">Kopdar</h3><p data-id="kopdar_desc">Silaturahmi rutin yang diisi dengan diskusi modifikasi, otomotif, dan pengalaman berkendara.</p></div>
+          <div class="kegiatan-card card"><i class="fas fa-hand-holding-heart"></i><img class="section-img" src="mixi semarang.jpg" alt="Bakti Sosial" onerror="this.src='https://images.unsplash.com/photo-1593113630400-ea6c2f7da1c6?w=400&h=200&fit=crop'"><h3 data-id="baksos">Bakti Sosial</h3><p data-id="baksos_desc">Donasi, pengobatan gratis, dan bedah rumah untuk masyarakat yang membutuhkan.</p></div>
+          <div class="kegiatan-card card"><i class="fas fa-chalkboard"></i><img class="section-img" src="coaching klinik mixi.jpg" alt="Coaching" onerror="this.src='https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=200&fit=crop'"><h3 data-id="coaching">Coaching Klinik</h3><p data-id="coaching_desc">Pendidikan safety driving dan perawatan kendaraan Xpander yang benar.</p></div>
+        </div>
+
+        <div style="margin-top: 40px;">
+          <h3 style="font-size: 1.5rem; margin-bottom: 20px; background: linear-gradient(135deg, #ff6b6b, #ff8e53); background-clip: text; -webkit-background-clip: text; color: transparent;" data-id="unggulan">Kegiatan Tahunan Unggulan</h3>
+          <div class="grid-2">
+            <div class="kegiatan-card card">
+              <i class="fas fa-mountain"></i>
+              <img class="section-img" src="xpanture.jpg" alt="XPanture" onerror="this.src='https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=200&fit=crop'">
+              <h3>XPanture</h3>
+              <p data-id="xpanture_desc">Kegiatan tahunan yang rutin dilaksanakan secara gabungan baik dari beberapa chapter maupun beberapa korwil yang bertujuan mempererat silaturahmi dan persaudaraan antar member mixi lintas chapter dan korwil dengan kegiatan khasnya selain touring, kopdar dan silaturahmi adalah menyisipkan kegiatan adventure baik saat touring dengan medan track yang cukup menantang maupun wisata adventure yang melibatkan adrenalin bagi seluruh peserta.</p>
+            </div>
+            <div class="kegiatan-card card">
+              <i class="fas fa-campground"></i>
+              <img class="section-img" src="xfac.jpg" alt="X-Fac" onerror="this.src='xfac mixi 4.jpg'">
+              <h3>X-Fac</h3>
+              <p data-id="xfac_desc">Merupakan kegiatan Camping/Campervan MIXI dimana acara ini juga dilaksanakan satu tahun sekali yang melibatkan seluruh member mixi lintas chapter maupun lintas korwil dimana kegiatan unik ini lebih mengakrabkan kembali seluruh pesertanya melalui kegiatan di alam bebas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- EVENT BESAR MIXI -->
+    <div class="container" id="event">
+      <section>
+        <h2 id="eventTitle">Event Besar MIXI</h2>
+        <p class="section-sub" id="eventSub">Event tahunan skala nasional yang menjadi agenda wajib seluruh anggota MIXI se-Indonesia.</p>
+        <div class="grid-2">
+          <div class="event-card card"><i class="fas fa-calendar-alt"></i><img class="section-img" src="anniv suci 1.jpg" alt="Anniversary" onerror="this.src='https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=200&fit=crop'"><h3 data-id="anniv">Anniversary Chapter</h3><p data-id="anniv_desc">Perayaan hari jadi chapter dengan berbagai acara seru dan kebersamaan.</p></div>
+          <div class="event-card card"><i class="fas fa-flag-checkered"></i><img class="section-img" src="mixi touring.jpg" alt="Touring" onerror="this.src='https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=200&fit=crop'"><h3 data-id="touring_nas">Touring Gabungan Nasional</h3><p data-id="touring_nas_desc">Konvoi akbar lintas provinsi yang diikuti ratusan peserta dari seluruh chapter.</p></div>
+          <div class="event-card card"><i class="fas fa-users"></i><img class="section-img" src="rakernas 2025.jpg" alt="Rakernas" onerror="this.src='https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=200&fit=crop'"><h3 data-id="rakernas">Rakernas</h3><p data-id="rakernas_desc">Rapat Kerja Nasional untuk menentukan program dan visi komunitas ke depan.</p></div>
+          <div class="event-card card"><i class="fas fa-campground"></i><img class="section-img" src="jamnas solo.jpg" alt="Jambore" onerror="this.src='https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=400&h=200&fit=crop'"><h3 data-id="jambore">Jambore Nasional</h3><p data-id="jambore_desc">Puncak akbar seluruh anggota MIXI yang dikemas dengan games, atraksi, dan kebersamaan.</p></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BERITA TERBARU -->
+    <div class="container" id="berita">
+      <section>
+        <h2 id="beritaTitle">Berita Terbaru</h2>
+        <p class="section-sub" id="beritaSub">Informasi terkini seputar kegiatan dan event MIXI dari seluruh chapter di Indonesia.</p>
+        <div class="grid-3">
+          <div class="news-card card">
+            <img class="section-img" src="ciayu touring2.jpg" alt="Touring Akbar">
+            <h3>Touring Chapter Ciayumajakuning</h3>
+            <p class="news-date"><i class="far fa-calendar-alt"></i> 15 Maret 2025</p>
+            <p>Puluhan Member MIXI Ciayumajakuning touring dan kopdar acara meriah diikuti oleh hampir semua member beserta keluarga nya disamping mempererat silaturahmi ajang ini menjadi moment mengakrabkan antar member terutama member yang baru gabung.</p>
+          </div>
+          <div class="news-card card">
+            <img class="section-img" src="baksos mixi.jpg" alt="Bakti Sosial">
+            <h3>Bakti Sosial MIXI Peduli</h3>
+            <p class="news-date"><i class="far fa-calendar-alt"></i> 1 Februari 2025</p>
+            <p>MIXI Bandung mengadakan aksi sosial berupa pemberian Bantuan Sosial Ramadhan berupa sembako ke Rumah Quran dan Yatim.</p>
+          </div>
+          <div class="news-card card">
+            <img class="section-img" src="camping gab mixi.jpg" alt="Camping Gabungan">
+            <h3>Camping Gabungan MIXI</h3>
+            <p class="news-date"><i class="far fa-calendar-alt"></i> 10 Januari 2025</p>
+            <p>MIXI Chapter Bekasi, Jakarta, Debora, Karawang, SUCI, dan Bandung mengadakan acara camping Gabungan MIXI yang diselenggarakan di Cikole Lembang Bandung.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- CHAPTER MIXI -->
+    <div class="container" id="chapter">
+      <section>
+        <h2 id="chapterTitle">Chapter MIXI Se-Indonesia</h2>
+        <p class="section-sub" id="chapterSub">Tersebar di 41 kota dari Sabang sampai Merauke, MIXI hadir sebagai keluarga besar pecinta Xpander.</p>
+        <div class="grid-3" id="chapterList"></div>
+      </section>
+    </div>
+
+    <!-- JOIN SECTION -->
+    <div class="container" id="join">
+      <div class="bg-soft">
+        <div style="text-align:center;">
+          <h2 id="joinTitle">Bergabung dengan MIXI</h2>
+          <p id="joinDesc" style="text-align: justify; text-align-last: center;">Jadilah bagian dari ribuan pengguna Xpander yang solid, maju bersama, dan berprestasi. Komunitas terbuka untuk semua pemilik Mitsubishi Xpander di seluruh Indonesia.</p>
+          <img src="mixi bdg9.jpg" style="width:100%; max-width:350px; border-radius:28px; margin:16px auto; display:block;">
+          <div class="flex-btns">
+            <button class="btn-join" id="joinNowBtn"><i class="fas fa-users"></i> <span id="joinNowText">Joint Komunitas</span></button>
+            <button class="btn-primary" id="partnerNowBtn"><i class="fas fa-handshake"></i> <span id="partnerNowText">Official Partner</span></button>
+          </div>
+          
+          <div class="social-icons">
+            <a href="https://instagram.com/mixi.indonesia" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/mitsubishixpanderindonesia" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@MixiNasional" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@mixi.nasional" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="mailto:mixipusat@gmail.com"><i class="fas fa-envelope"></i></a>
+          </div>
+          <p style="margin-top:12px; text-align: center;"><strong>Email:</strong> mixipusat@gmail.com | <strong>IG:</strong> @mixi.indonesia | <strong>YT:</strong> @MixiNasional | <strong>TikTok:</strong> @mixi.nasional</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p style="text-align:center; opacity:0.6; font-size:0.75rem;" id="copyright">© 2026 MIXI - Mitsubishi Xpander Indonesia | Komunitas Mobil Keluarga Xpander Terbesar di Indonesia | Berdiri Sejak tahun 2018</p>
+    </div>
+  </footer>
+
+  <div class="floating-buttons">
+    <div class="wa-float">
+      <a href="https://wa.me/6281933268924" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  <script>
+    // CHAPTER DATA
+    const regions = [
+      {name:"SUMATERA", chapters:["Aceh","Padang","Palembang","Lampung","Medan","Pekan Baru","Batam","Jambi","Bengkulu"]},
+      {name:"JAWA BARAT", chapters:["Jakarta Raya","Jakarta Metropolis","Bekasi Raya","Depok Bogor Raya","Bandung","Karawang","Ciayumajakuning","Banten Raya","Suci"]},
+      {name:"JAWA TENGAH", chapters:["Kebumen","Semarang","Jepara","Balanantura","Jogjakarta","Solo Raya","Banyumas Raya","Muria Raya"]},
+      {name:"JAWA TIMUR", chapters:["Surabaya","Malang Raya","Tuban Raya","AG Raya (Kediri)"]},
+      {name:"BALI & NTB", chapters:["Semeton Bali","Lombok"]},
+      {name:"KALIMANTAN", chapters:["Borneo Kaltim","Borneo Kalsel","Borneo Kalbar","Kalimantan Utara","Kalimantan Tengah"]},
+      {name:"SULAWESI", chapters:["Makasar","Luwuk Raya"]},
+      {name:"MALUKU & PAPUA", chapters:["Ambon","Papua"]}
+    ];
+
+    function renderChapters() {
+      let html = '';
+      regions.forEach(r => {
+        let list = r.chapters.map((ch, idx) => `<li><i class="fas fa-location-dot"></i><span class="chapter-number">${idx+1}</span>${ch}</li>`).join('');
+        html += `<div class="chapter-region-card card"><div class="region-badge"><i class="fas fa-map-marker-alt"></i> ${r.name}</div><div class="region-title"><span>${r.chapters.length} Chapter</span></div><ul class="chapter-list">${list}</ul></div>`;
+      });
+      document.getElementById('chapterList').innerHTML = html;
+    }
+    renderChapters();
+
+    // BILINGUAL TRANSLATIONS
+    const translations = {
+      id: {
+        nav_tentang: "Tentang", nav_pengurus: "Pengurus", nav_penasehat: "Penasehat", nav_kegiatan: "Kegiatan", nav_event: "Event", nav_chapter: "Chapter", nav_berita: "Berita", nav_join: "Joint",
+        heroTitle: "Komunitas Mobil Mitsubishi Xpander", heroDesc: "Satu hati, satu rasa, satu aspal \"MIXI We Are Family\". Menjelajah nusantara dengan kebersamaan dan semangat Keluarga.",
+        btn_join: "Joint Komunitas", btn_partner: "Official Partner",
+        aboutTitle: "Tentang MIXI", aboutText: "MIXI (Mitsubishi Xpander Indonesia) adalah sebuah wadah prestisius bagi para pemilik dan antusias kendaraan Mitsubishi Xpander di seluruh tanah air. Secara hukum, komunitas ini telah mengukuhkan eksistensinya melalui akta pendirian perkumpulan yang sah dan legal, menjadikannya organisasi otomotif yang akuntabel dan terpercaya.\n\nVisi utama MIXI melampaui sekadar hobi otomotif; kami berkomitmen memupuk tali silaturahmi tanpa batas serta mempererat semangat persaudaraan lintas sektoral di antara para anggotanya. Melalui filosofi \"MIXI We Are Family\", secara konsisten menyelenggarakan berbagai program inovatif dan kegiatan positif yang dirancang khusus untuk melibatkan seluruh elemen keluarga. Mulai dari kegiatan touring edukatif, aksi sosial kemanusiaan, hingga pertemuan rutin yang edukatif, setiap agenda MIXI bertujuan untuk memberikan nilai tambah bagi member sekaligus membangun dampak nyata yang bermanfaat bagi masyarakat luas.",
+        penasehatTitle: "Dewan Penasehat MIXI Nasional", penasehatSub: "Para tokoh dan sesepuh yang memberikan arahan, bimbingan, serta nasihat untuk kemajuan dan keberkahan komunitas MIXI.",
+        advisor1: "Penasehat 1", advisor2: "Penasehat 2", advisor3: "Penasehat 3", advisor4: "Penasehat 4",
+        name: "Nama:", id_member: "ID Member:", chapter: "Asal Chapter:",
+        pengurusTitle: "Pengurus Nasional 2024-2027", pengurusSub: "Kepengurusan periode 2024-2027 | Semangat Kolaborasi untuk kemajuan komunitas Xpander Indonesia.",
+        pimpinan: "Pimpinan Utama", ketua: "Ketua Umum:", wakil: "Wakil Ketua:", sekretaris: "Sekretaris:", bendahara: "Bendahara:",
+        divisi: "Divisi Lengkap", div_membership: "Divisi Membership", div_otomotif: "Divisi Otomotif", div_kegiatan: "Divisi Kegiatan", div_kominfo: "Divisi Kominfo", div_legal: "Divisi Legal dan Keamanan", div_sosial: "Divisi Sosial Kemasyarakatan", div_kemitraan: "Divisi Kemitraan dan Dana Usaha",
+        korwil: "Koordinator Wilayah (Korwil)", korwil3: "Korwil III (Jawa Barat):", korwil4: "Korwil IV (Jateng - DIY):", korwil5: "Korwil V (Jawa Timur):",
+        kegiatanTitle: "Kegiatan MIXI", kegiatanSub: "Berbagai kegiatan rutin, tahunan, dan insidental yang kami selenggarakan.",
+        tour: "Touring", tour_desc: "Jelajahi keindahan Indonesia dengan konvoi Xpander bersama anggota dari berbagai chapter.",
+        kopdar: "Kopdar", kopdar_desc: "Silaturahmi rutin yang diisi dengan diskusi modifikasi, otomotif, dan pengalaman berkendara.",
+        baksos: "Bakti Sosial", baksos_desc: "Donasi, pengobatan gratis, dan bedah rumah untuk masyarakat yang membutuhkan.",
+        coaching: "Coaching Klinik", coaching_desc: "Pendidikan safety driving dan perawatan kendaraan Xpander yang benar.",
+        unggulan: "Kegiatan Tahunan Unggulan", xpanture_desc: "Kegiatan tahunan yang rutin dilaksanakan secara gabungan baik dari beberapa chapter maupun beberapa korwil yang bertujuan mempererat silaturahmi dan persaudaraan antar member mixi lintas chapter dan korwil dengan kegiatan khasnya selain touring, kopdar dan silaturahmi adalah menyisipkan kegiatan adventure baik saat touring dengan medan track yang cukup menantang maupun wisata adventure yang melibatkan adrenalin bagi seluruh peserta.",
+        xfac_desc: "Merupakan kegiatan Camping/Campervan MIXI dimana acara ini juga dilaksanakan satu tahun sekali yang melibatkan seluruh member mixi lintas chapter maupun lintas korwil dimana kegiatan unik ini lebih mengakrabkan kembali seluruh pesertanya melalui kegiatan di alam bebas.",
+        eventTitle: "Event Besar MIXI", eventSub: "Event tahunan skala nasional yang menjadi agenda wajib seluruh anggota MIXI se-Indonesia.",
+        anniv: "Anniversary Chapter", anniv_desc: "Perayaan hari jadi chapter dengan berbagai acara seru dan kebersamaan.",
+        touring_nas: "Touring Gabungan Nasional", touring_nas_desc: "Konvoi akbar lintas provinsi yang diikuti ratusan peserta dari seluruh chapter.",
+        rakernas: "Rakernas", rakernas_desc: "Rapat Kerja Nasional untuk menentukan program dan visi komunitas ke depan.",
+        jambore: "Jambore Nasional", jambore_desc: "Puncak akbar seluruh anggota MIXI yang dikemas dengan games, atraksi, dan kebersamaan.",
+        beritaTitle: "Berita Terbaru", beritaSub: "Informasi terkini seputar kegiatan dan event MIXI dari seluruh chapter di Indonesia.",
+        chapterTitle: "Chapter MIXI Se-Indonesia", chapterSub: "Tersebar di 41 kota dari Sabang sampai Merauke, MIXI hadir sebagai keluarga besar pecinta Xpander.",
+        joinTitle: "Bergabung dengan MIXI", joinDesc: "Jadilah bagian dari ribuan pengguna Xpander yang solid, maju bersama, dan berprestasi. Komunitas terbuka untuk semua pemilik Mitsubishi Xpander di seluruh Indonesia.",
+        joinNowText: "Joint Komunitas", partnerNowText: "Official Partner",
+        copyright: "© 2026 MIXI - Mitsubishi Xpander Indonesia | Komunitas Mobil Keluarga Xpander Terbesar di Indonesia | Berdiri Sejak tahun 2018"
+      },
+      en: {
+        nav_tentang: "About", nav_pengurus: "Board", nav_penasehat: "Advisor", nav_kegiatan: "Activities", nav_event: "Events", nav_chapter: "Chapters", nav_berita: "News", nav_join: "Join",
+        heroTitle: "Xpander Lovers Community", heroDesc: "One heart, one soul, one asphalt \"MIXI We Are Family\". Exploring the archipelago with togetherness and family spirit.",
+        btn_join: "Join Community", btn_partner: "Official Partner",
+        aboutTitle: "About MIXI", aboutText: "MIXI (Mitsubishi Xpander Indonesia) is a prestigious forum for Mitsubishi Xpander owners and enthusiasts throughout the country. Legally, this community has established its existence through a legal and valid association deed, making it an accountable and trustworthy automotive organization.\n\nMIXI's main vision goes beyond just automotive hobbies; we are committed to fostering unlimited friendships and strengthening cross-sectoral brotherhood among its members. Through the philosophy \"MIXI We Are Family\", we consistently organize innovative programs and positive activities designed to involve all family elements. From educational touring, humanitarian social actions, to educational routine meetings, every MIXI agenda aims to provide added value to members while building real impacts that benefit the wider community.",
+        penasehatTitle: "MIXI National Advisory Board", penasehatSub: "Figures and elders who provide direction, guidance, and advice for the progress and blessing of the MIXI community.",
+        advisor1: "Advisor 1", advisor2: "Advisor 2", advisor3: "Advisor 3", advisor4: "Advisor 4",
+        name: "Name:", id_member: "ID Member:", chapter: "Origin Chapter:",
+        pengurusTitle: "National Board 2024-2027", pengurusSub: "Management period 2024-2027 | Collaboration Spirit for the progress of the Xpander Indonesia community.",
+        pimpinan: "Main Leadership", ketua: "Chairman:", wakil: "Vice Chairman:", sekretaris: "Secretary:", bendahara: "Treasurer:",
+        divisi: "Complete Divisions", div_membership: "Membership Division", div_otomotif: "Automotive Division", div_kegiatan: "Activities Division", div_kominfo: "Communication & Information Division", div_legal: "Legal & Security Division", div_sosial: "Social Division", div_kemitraan: "Partnership & Business Fund Division",
+        korwil: "Regional Coordinators (Korwil)", korwil3: "Korwil III (West Java):", korwil4: "Korwil IV (Central Java - DIY):", korwil5: "Korwil V (East Java):",
+        kegiatanTitle: "MIXI Activities", kegiatanSub: "Various routine, annual, and incidental activities we organize to strengthen friendship.",
+        tour: "Touring", tour_desc: "Explore the beauty of Indonesia with Xpander convoys with members from various chapters.",
+        kopdar: "Meetup", kopdar_desc: "Regular gatherings filled with discussions about modifications, automotive, and driving experiences.",
+        baksos: "Social Charity", baksos_desc: "Donations, free medical treatment, and house renovation for those in need.",
+        coaching: "Coaching Clinic", coaching_desc: "Safety driving education and proper Xpander vehicle maintenance.",
+        unggulan: "Annual Featured Activities", xpanture_desc: "Annual activity regularly held jointly by several chapters or regional coordinators aimed at strengthening friendship and brotherhood among MIXI members across chapters and regions with its distinctive activities besides touring, meetups, and gathering is inserting adventure activities both during touring with challenging terrain tracks or adventure tourism that involves adrenaline for all participants.",
+        xfac_desc: "MIXI Camping/Campervan activity which is also held once a year involving all MIXI members across chapters and regional coordinators where this unique activity re-familiarizes all participants through outdoor activities.",
+        eventTitle: "Major MIXI Events", eventSub: "Annual national-scale events that are mandatory agendas for all MIXI members throughout Indonesia.",
+        anniv: "Chapter Anniversary", anniv_desc: "Celebration of each chapter's anniversary with fun events and togetherness.",
+        touring_nas: "National Joint Touring", touring_nas_desc: "Grand cross-province convoy attended by hundreds of participants from all chapters.",
+        rakernas: "National Working Meeting", rakernas_desc: "National Working Meeting to determine future community programs and vision.",
+        jambore: "National Jamboree", jambore_desc: "Grand peak of all MIXI members packaged with games, attractions, and togetherness.",
+        beritaTitle: "Latest News", beritaSub: "Latest information about MIXI activities and events from all chapters in Indonesia.",
+        chapterTitle: "MIXI Chapters in Indonesia", chapterSub: "Spread across 41 cities from Sabang to Merauke, MIXI is present as a big family of Xpander lovers.",
+        joinTitle: "Join MIXI", joinDesc: "Be part of thousands of solid Xpander users, move forward together, and excel. The community is open to all Mitsubishi Xpander owners throughout Indonesia.",
+        joinNowText: "Join Community", partnerNowText: "Official Partner",
+        copyright: "© 2026 MIXI - Mitsubishi Xpander Indonesia | The Largest Xpander Community in Indonesia | Established Since 2018"
+      }
+    };
+
+    let currentLang = 'id';
+    const langToggle = document.getElementById('lang-toggle');
+    const langText = document.getElementById('lang-text');
+
+    function applyLanguage(lang) {
+      document.querySelectorAll('[data-id]').forEach(el => {
+        const key = el.getAttribute('data-id');
+        if (translations[lang][key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'BUTTON') {
+            el.value = translations[lang][key];
+          } else {
+            el.innerText = translations[lang][key];
+          }
+        }
+      });
+      
+      document.getElementById('heroTitle').innerText = translations[lang].heroTitle;
+      document.getElementById('heroDesc').innerText = translations[lang].heroDesc;
+      document.getElementById('aboutTitle').innerText = translations[lang].aboutTitle;
+      document.getElementById('aboutText').innerText = translations[lang].aboutText;
+      document.getElementById('penasehatTitle').innerText = translations[lang].penasehatTitle;
+      document.getElementById('penasehatSub').innerText = translations[lang].penasehatSub;
+      document.getElementById('pengurusTitle').innerText = translations[lang].pengurusTitle;
+      document.getElementById('pengurusSub').innerText = translations[lang].pengurusSub;
+      document.getElementById('kegiatanTitle').innerText = translations[lang].kegiatanTitle;
+      document.getElementById('kegiatanSub').innerText = translations[lang].kegiatanSub;
+      document.getElementById('eventTitle').innerText = translations[lang].eventTitle;
+      document.getElementById('eventSub').innerText = translations[lang].eventSub;
+      document.getElementById('beritaTitle').innerText = translations[lang].beritaTitle;
+      document.getElementById('beritaSub').innerText = translations[lang].beritaSub;
+      document.getElementById('chapterTitle').innerText = translations[lang].chapterTitle;
+      document.getElementById('chapterSub').innerText = translations[lang].chapterSub;
+      document.getElementById('joinTitle').innerText = translations[lang].joinTitle;
+      document.getElementById('joinDesc').innerText = translations[lang].joinDesc;
+      document.getElementById('joinNowText').innerText = translations[lang].joinNowText;
+      document.getElementById('partnerNowText').innerText = translations[lang].partnerNowText;
+      document.getElementById('copyright').innerText = translations[lang].copyright;
+      
+      document.getElementById('joinCommunityBtn').innerHTML = `<i class="fas fa-users"></i> ${translations[lang].btn_join}`;
+      document.getElementById('partnerBtn').innerHTML = `<i class="fas fa-handshake"></i> ${translations[lang].btn_partner}`;
+      
+      langText.innerText = lang === 'id' ? 'EN' : 'ID';
+    }
+
+    langToggle.addEventListener('click', () => {
+      currentLang = currentLang === 'id' ? 'en' : 'id';
+      applyLanguage(currentLang);
+    });
+
+    applyLanguage('id');
+
+    // BUTTON ACTIONS - UPDATED LINKS
+    // Link Joint Komunitas (Google Form)
+    const googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSdKVqxpjA2BhD-on8IAIjShr4AmKVwvB5pZRcnKH8Dk9U0Vjw/viewform";
+    
+    document.getElementById('joinCommunityBtn').onclick = () => window.open(googleFormLink, '_blank');
+    document.getElementById('joinNowBtn').onclick = () => window.open(googleFormLink, '_blank');
+    
+    // Link Official Partner (WhatsApp dengan pesan khusus)
+    const partnerWhatsAppLink = "https://wa.me/6281222322486?text=Halo%20MIXI%2C%20saya%20tertarik%20untuk%20bermitra%20menjadi%20Official%20Partner";
+    
+    document.getElementById('partnerBtn').onclick = () => window.open(partnerWhatsAppLink, '_blank');
+    document.getElementById('partnerNowBtn').onclick = () => window.open(partnerWhatsAppLink, '_blank');
+  </script>
+</body>
+</html>

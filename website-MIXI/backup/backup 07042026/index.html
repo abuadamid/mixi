@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MIXI | Mitsubishi Xpander Indonesia</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+      background-color: #fefcf5;
+      color: #1e1e2a;
+      transition: background-color 0.3s ease, color 0.2s ease;
+      scroll-behavior: smooth;
+    }
+    .gradient-red {
+      background: linear-gradient(135deg, #c0392b, #e74c3c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #c0392b, #e74c3c);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #e74c3c;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #c0392b;
+    }
+    .btn-join {
+      background: linear-gradient(135deg, #c0392b, #e67e22);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .theme-toggle, .lang-toggle {
+      background: none;
+      border: 1px solid #e0a0a0;
+      border-radius: 40px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #c0392b;
+    }
+    body.dark {
+      background-color: #0f0f14;
+      color: #ececec;
+    }
+    body.dark .card, body.dark .chapter-region-card, body.dark .pengurus-struct,
+    body.dark .event-card, body.dark .kegiatan-card, body.dark .admin-panel,
+    body.dark .news-card {
+      background-color: #1e1e2a;
+      border-color: #3a2a2a;
+    }
+    body.dark .navbar { background-color: #0f0f14e6; backdrop-filter: blur(12px); border-bottom-color: #3a2a2a; }
+    body.dark .footer { background-color: #0a0a0f; border-top-color: #2a1a1a; }
+    body.dark .theme-toggle, body.dark .lang-toggle { border-color: #e07474; color: #ffb3b3 !important; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+    .navbar {
+      position: sticky; top: 0; background-color: #fefcf5e6; backdrop-filter: blur(12px);
+      z-index: 100; border-bottom: 1px solid #f0d0d0; padding: 16px 0;
+    }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-img { height: 48px; width: auto; object-fit: contain; }
+    .logo-text h1 { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #c0392b, #e74c3c); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .logo-text p { font-size: 0.65rem; font-weight: 500; color: #b84c3c; }
+    .nav-links { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; font-weight: 500; color: inherit; transition: 0.2s; }
+    .nav-links a:hover { color: #e74c3c; }
+    .hero { padding: 80px 0 60px; text-align: center; }
+    .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.2; }
+    .hero .highlight { background: linear-gradient(135deg, #c0392b, #e74c3c, #e67e22); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .hero p { font-size: 1.2rem; margin-top: 20px; max-width: 700px; margin-left: auto; margin-right: auto; color: #a05040; }
+    .hero-img { margin-top: 40px; border-radius: 32px; overflow: hidden; box-shadow: 0 20px 35px -10px rgba(192,57,43,0.2); }
+    .hero-img img { width: 100%; height: auto; display: block; }
+    .section-img { width: 100%; height: 200px; object-fit: cover; border-radius: 24px; margin-bottom: 20px; }
+    .grid-2, .grid-3, .grid-4 { display: grid; gap: 32px; }
+    .grid-2 { grid-template-columns: repeat(2,1fr); }
+    .grid-3 { grid-template-columns: repeat(3,1fr); }
+    .grid-4 { grid-template-columns: repeat(4,1fr); }
+    .card, .kegiatan-card, .event-card, .chapter-region-card, .pengurus-struct, .news-card {
+      background: white; border-radius: 28px; padding: 28px 24px;
+      box-shadow: 0 8px 24px rgba(192,57,43,0.05);
+      border: 1px solid #f0d8d8;
+    }
+    .card:hover { transform: translateY(-5px); }
+    section { margin: 70px 0; }
+    section h2 { font-size: 2.3rem; font-weight: 700; margin-bottom: 16px; background: linear-gradient(135deg, #c0392b, #e74c3c); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .section-sub { margin-bottom: 48px; color: #b85c4c; font-size: 1.1rem; }
+    
+    /* FLOATING BUTTONS - BOTTOM RIGHT */
+    .floating-buttons {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 1000;
+    }
+    .wa-float {
+      background-color: #25D366;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.05); }
+    .wa-float a { color: white; font-size: 30px; }
+    
+    /* TOMBOL ADMIN - SANGAT JELAS */
+    .admin-float {
+      background: linear-gradient(135deg, #c0392b, #e74c3c);
+      width: auto;
+      min-width: 56px;
+      height: 56px;
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(192,57,43,0.4);
+      cursor: pointer;
+      transition: 0.2s;
+      padding: 0 20px;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .admin-float:hover { transform: scale(1.05); background: linear-gradient(135deg, #e74c3c, #c0392b); }
+    .admin-float i { font-size: 20px; }
+    
+    /* ADMIN PANEL */
+    .admin-panel {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 400px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+      z-index: 1001;
+      transition: right 0.35s ease;
+      padding: 24px;
+      overflow-y: auto;
+      border-left: 4px solid #e74c3c;
+    }
+    .admin-panel.open { right: 0; }
+    .admin-panel h4 { margin-bottom: 18px; color: #c0392b; font-size: 1.3rem; border-bottom: 2px solid #e74c3c; padding-bottom: 8px; }
+    .admin-panel input, .admin-panel textarea {
+      width: 100%; margin-bottom: 12px; padding: 10px; border-radius: 12px;
+      border: 1px solid #e0b0b0; font-family: inherit;
+    }
+    .admin-panel button {
+      background: #c0392b; color: white; border: none; padding: 10px;
+      border-radius: 30px; cursor: pointer; width: 100%; margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .admin-panel button:hover { background: #e74c3c; }
+    .admin-panel label { font-weight: 600; margin-bottom: 4px; display: block; color: #c0392b; }
+    .close-panel {
+      position: absolute; top: 15px; right: 20px;
+      background: none; border: none; font-size: 24px;
+      cursor: pointer; color: #c0392b; width: auto;
+    }
+    hr { margin: 15px 0; }
+    
+    footer { background: #faf0ec; padding: 48px 0 24px; margin-top: 60px; border-top: 1px solid #f0d0d0; }
+    .social-icons { display: flex; gap: 24px; justify-content: center; margin: 20px 0; }
+    .social-icons a { color: #c0392b; font-size: 1.8rem; }
+    .flex-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .container { padding: 0 20px; }
+      .hero h1 { font-size: 2.3rem; }
+      .admin-panel { width: 100%; right: -100%; }
+      .admin-float span { display: none; }
+      .admin-float { min-width: 56px; padding: 0; }
+    }
+    .kegiatan-card i, .event-card i { font-size: 2rem; background: linear-gradient(135deg, #c0392b, #e74c3c); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 15px; display: inline-block; }
+    .bg-soft { background: linear-gradient(145deg, #fef0ec, #ffe6e0); border-radius: 48px; padding: 48px 32px; }
+    .chapter-region-card .region-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; border-left: 4px solid #e74c3c; padding-left: 16px; }
+    .chapter-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+    .chapter-list li { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; padding: 6px 0; border-bottom: 1px dashed #f0d0d0; }
+    .chapter-number { font-weight: 600; color: #c0392b; background: #ffe0e0; display: inline-block; width: 26px; height: 26px; text-align: center; line-height: 26px; border-radius: 20px; font-size: 0.7rem; margin-right: 6px; }
+    .region-badge { background: #ffebeb; padding: 4px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 600; display: inline-block; margin-bottom: 12px; color: #c0392b; }
+    .pengurus-struct h3 { font-size: 1.4rem; margin-bottom: 20px; border-bottom: 2px solid #e74c3c; padding-bottom: 8px; }
+    .pengurus-item { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; padding: 8px 0; border-bottom: 1px dotted #f0d0d0; }
+    .pengurus-name { font-weight: 700; min-width: 170px; color: #c0392b; }
+    .badge-chapter { background: #ffebeb; border-radius: 20px; padding: 2px 10px; font-size: 0.7rem; margin-left: 8px; }
+    .subdivisi { margin-top: 8px; margin-left: 20px; color: #e74c3c; font-size: 0.85rem; }
+    .divisi-title { font-weight: 700; color: #c0392b; margin-top: 12px; margin-bottom: 6px; border-left: 3px solid #e74c3c; padding-left: 10px; }
+    .news-date { font-size: 0.75rem; color: #e74c3c; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-container">
+      <div class="logo">
+        <img id="logoImage" class="logo-img" src="mixi.png" alt="MIXI Logo" onerror="this.style.display='none'; document.getElementById('fallbackLogo').style.display='flex';">
+        <div class="logo-text" id="fallbackLogo" style="display: none;"><h1>MIXI</h1><p>Mitsubishi Xpander Indonesia</p></div>
+      </div>
+      <div class="nav-links">
+        <a href="#tentang">Tentang</a> <a href="#pengurus">Pengurus</a> <a href="#kegiatan">Kegiatan</a>
+        <a href="#event">Event</a> <a href="#chapter">Chapter</a> <a href="#berita">Berita</a> <a href="#join">Joint</a>
+        <button class="theme-toggle" id="darkmode-toggle"><i class="fas fa-moon"></i> Dark</button>
+        <button class="lang-toggle" id="lang-toggle"><i class="fas fa-globe"></i> EN/ID</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <div class="container">
+        <h1><span class="highlight">Mitsubishi Xpander</span><br><span id="heroTitle">Komunitas Pecinta Xpander Indonesia</span></h1>
+        <p id="heroDesc">Satu hati, satu rasa, satu asap knalpot. Menjelajah nusantara dengan kebersamaan dan semangat Xpander.</p>
+        <div class="hero-img"><img id="heroImage" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1200&h=600&fit=crop" alt="MIXI"></div>
+        <div class="flex-btns"><button class="btn-primary" id="joinCommunityBtn">Joint Komunitas</button><button class="btn-outline" id="partnerBtn">Official Partner</button></div>
+      </div>
+    </div>
+
+    <div class="container" id="tentang"><section><h2>Tentang MIXI</h2><div class="grid-2"><div><p id="aboutText">MIXI (Mitsubishi Xpander Indonesia) adalah wadah resmi bagi pengguna Mitsubishi Xpander di seluruh Indonesia. Berdiri sejak 2018, kami berkomitmen membangun solidaritas, berbagi pengetahuan otomotif, serta menggelar aksi sosial dan touring yang menginspirasi.</p></div><div><img id="aboutImage" src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=600&h=400&fit=crop" style="width:100%; border-radius:32px; height:260px; object-fit:cover;"></div></div></section></div>
+
+    <div class="container" id="pengurus"><section><h2>Pengurus Nasional 2024-2027</h2><p class="section-sub">Kepengurusan periode 2024-2027</p>
+    <div class="grid-2"><div class="pengurus-struct card"><h3><i class="fas fa-crown"></i> Pimpinan Utama</h3><div class="pengurus-item"><span class="pengurus-name">Ketua Umum:</span><span>Deni Nurdiansyah (0988) <span class="badge-chapter">SUCI</span></span></div><div class="pengurus-item"><span class="pengurus-name">Wakil Ketua:</span><span>Oktavian Barus (0342) <span class="badge-chapter">Bekasi Raya</span></span></div><div class="pengurus-item"><span class="pengurus-name">Sekretaris:</span><span>Dede Iswandi (0943) <span class="badge-chapter">Ciayumajakuning</span></span></div><div class="pengurus-item"><span class="pengurus-name">Bendahara:</span><span>Ria Amilia Rossyah & Hadarno Hamka</span></div></div>
+    <div class="pengurus-struct card"><h3><i class="fas fa-users"></i> Divisi</h3><div class="divisi-title">Membership</div><div class="subdivisi">Anasrul (0996) JAKRAY • Untung Djojo (1014) Semarang • Nano (0700) SUCI</div><div class="divisi-title">Otomotif</div><div class="subdivisi">Hardiansyah (0959) Aceh • Nelson Yonathan (1423) Jakpol</div><div class="divisi-title">Kegiatan</div><div class="subdivisi">Immanul Yaqin (1445) Sumbar • Taufik (0269) Bekasi • Suyadi (1422) Yogya</div><div class="divisi-title">Kominfo</div><div class="subdivisi">Bhakti Prambanan (0486) Bandung • Hariki (0685) JAKRAY</div></div></div></section></div>
+
+    <div class="container" id="kegiatan"><section><h2>Kegiatan MIXI</h2><div class="grid-4"><div class="kegiatan-card card"><i class="fas fa-map-marked-alt"></i><img class="section-img" src="mixi bdg11.jpg"><h3>Touring</h3><p>Jelajahi Indonesia dengan konvoi Xpander</p></div><div class="kegiatan-card card"><i class="fas fa-mug-hot"></i><img class="section-img" src="mixi bdg 6.jpg"><h3>Kopdar</h3><p>Silaturahmi rutin & diskusi</p></div><div class="kegiatan-card card"><i class="fas fa-hand-holding-heart"></i><img class="section-img" src="mixi semarang.jpg"><h3>Bakti Sosial</h3><p>Donasi & pengobatan gratis</p></div><div class="kegiatan-card card"><i class="fas fa-chalkboard"></i><img class="section-img" src="coaching klinik mixi.jpg"><h3>Coaching Klinik</h3><p>Safety driving & perawatan</p></div></div></section></div>
+
+    <div class="container" id="event"><section><h2>Event Besar MIXI</h2><div class="grid-2"><div class="event-card card"><i class="fas fa-calendar-alt"></i><img class="section-img" src="anniv suci 1.jpg"><h3>Anniversary Chapter</h3></div><div class="event-card card"><i class="fas fa-flag-checkered"></i><img class="section-img" src="mixi touring.jpg"><h3>Touring Gabungan Nasional</h3></div><div class="event-card card"><i class="fas fa-users"></i><img class="section-img" src="rakernas 2025.jpg"><h3>Rakernas</h3></div><div class="event-card card"><i class="fas fa-campground"></i><img class="section-img" src="jamnas solo.jpg"><h3>Jambore Nasional</h3></div></div></section></div>
+
+    <div class="container" id="berita"><section><h2>Berita Terbaru</h2><div id="newsContainer" class="grid-3"></div></section></div>
+
+    <div class="container" id="chapter"><section><h2>Chapter MIXI Se-Indonesia</h2><p class="section-sub">41 Chapter dari Aceh hingga Papua</p><div class="grid-3" id="chapterList"></div></section></div>
+
+    <div class="container" id="join"><div class="bg-soft"><div style="text-align:center;"><h2>Bergabung dengan MIXI</h2><p>Jadilah bagian dari ribuan pengguna Xpander</p><img id="joinImage" src="https://images.unsplash.com/photo-1567188040759-fb6b883af696?w=800&h=300&fit=crop" style="width:100%; max-width:400px; border-radius:28px; margin:20px auto; display:block;"><div class="flex-btns"><button class="btn-join" id="joinNowBtn"><i class="fas fa-users"></i> Joint Komunitas</button><button class="btn-primary" id="partnerNowBtn"><i class="fas fa-handshake"></i> Official Partner</button></div><div class="social-icons"><a href="https://instagram.com/mixi.indonesia"><i class="fab fa-instagram"></i></a><a href="https://facebook.com/mitsubishixpanderindonesia"><i class="fab fa-facebook"></i></a><a href="mailto:mixipusat@gmail.com"><i class="fas fa-envelope"></i></a></div><p><strong>Email:</strong> mixipusat@gmail.com | <strong>IG:</strong> @mixi.indonesia</p></div></div></div>
+  </main>
+  <footer class="footer"><div class="container"><div class="social-icons"><a href="https://instagram.com/mixi.indonesia"><i class="fab fa-instagram"></i></a><a href="https://facebook.com/mitsubishixpanderindonesia"><i class="fab fa-facebook"></i></a><a href="mailto:mixipusat@gmail.com"><i class="fas fa-envelope"></i></a></div><p>© 2026 MIXI - Mitsubishi Xpander Indonesia</p></div></footer>
+
+  <!-- FLOATING BUTTONS - DI SINI TOMBOL ADMIN BERADA -->
+  <div class="floating-buttons">
+    <div class="admin-float" id="adminOpenBtn">
+      <i class="fas fa-cog fa-spin" style="--fa-animation-duration: 3s;"></i>
+      <span>ADMIN PANEL</span>
+    </div>
+    <div class="wa-float">
+      <a href="https://wa.me/6281222322486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="admin-panel" id="adminPanel">
+    <button class="close-panel" id="adminCloseBtn">&times;</button>
+    <h4><i class="fas fa-edit"></i> Admin Panel MIXI</h4>
+    <label>Logo URL (mixi.png)</label><input type="text" id="adminLogoUrl" placeholder="mixi.png">
+    <label>Hero Judul</label><input type="text" id="adminHeroTitle">
+    <label>Hero Deskripsi</label><textarea id="adminHeroDesc" rows="2"></textarea>
+    <label>Hero Gambar URL</label><input type="text" id="adminHeroImg">
+    <label>Tentang Teks</label><textarea id="adminAboutText" rows="3"></textarea>
+    <label>Tentang Gambar URL</label><input type="text" id="adminAboutImg">
+    <label>Join Gambar URL</label><input type="text" id="adminJoinImg">
+    <button id="applyChangesBtn"><i class="fas fa-save"></i> Simpan Perubahan</button>
+    <button id="resetDefaultBtn"><i class="fas fa-undo"></i> Reset ke Default</button>
+    <hr>
+    <h5><i class="fas fa-newspaper"></i> Kelola Berita</h5>
+    <input type="text" id="newsTitle" placeholder="Judul Berita">
+    <textarea id="newsDesc" placeholder="Deskripsi berita..."></textarea>
+    <input type="text" id="newsImage" placeholder="URL Gambar Berita">
+    <button id="addNewsBtn"><i class="fas fa-plus"></i> Tambah Berita</button>
+    <div id="newsListAdmin" style="margin-top:15px;"></div>
+  </div>
+
+  <script>
+    // CHAPTER DATA
+    const regions = [
+      {name:"SUMATERA", chapters:["Aceh","Padang","Palembang","Lampung","Medan","Pekan Baru","Batam","Jambi","Bengkulu"]},
+      {name:"JAWA BARAT", chapters:["Jakarta Raya","Jakarta Metropolis","Bekasi Raya","Depok Bogor Raya","Bandung","Karawang","Ciayumajakuning","Banten Raya","Suci"]},
+      {name:"JAWA TENGAH", chapters:["Kebumen","Semarang","Jepara","Balanantura","Jogjakarta","Solo Raya","Banyumas Raya","Muria Raya"]},
+      {name:"JAWA TIMUR", chapters:["Surabaya","Malang Raya","Tuban Raya","AG Raya (Kediri)"]},
+      {name:"BALI & NTB", chapters:["Semeton Bali","Lombok"]},
+      {name:"KALIMANTAN", chapters:["Borneo Kaltim","Borneo Kalsel","Borneo Kalbar","Kalimantan Utara","Kalimantan Tengah"]},
+      {name:"SULAWESI", chapters:["Makasar","Luwuk Raya"]},
+      {name:"MALUKU & PAPUA", chapters:["Ambon","Papua"]}
+    ];
+    function renderChapters() { let html = ''; regions.forEach(r=>{ let list = r.chapters.map((ch,idx)=>`<li><i class="fas fa-location-dot"></i><span class="chapter-number">${idx+1}</span>${ch}</li>`).join(''); html+=`<div class="chapter-region-card card"><div class="region-badge"><i class="fas fa-map-marker-alt"></i> ${r.name}</div><div class="region-title"><span>${r.chapters.length} Chapter</span></div><ul class="chapter-list">${list}</ul></div>`; }); document.getElementById('chapterList').innerHTML = html; } renderChapters();
+    
+    let newsData = [
+      {title:"Touring Akbar Jambore 2026", desc:"Ratusan Xpander berkumpul di Yogyakarta", img:"https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=200&fit=crop"},
+      {title:"Bakti Sosial MIXI Peduli", desc:"Donasi untuk korban bencana", img:"https://images.unsplash.com/photo-1593113630400-ea6c2f7da1c6?w=400&h=200&fit=crop"}
+    ];
+    function renderNews() { let html = ''; newsData.forEach(n=>{ html+=`<div class="news-card card"><img class="section-img" src="${n.img}" onerror="this.src='https://placehold.co/400x200?text=Berita'"><h3>${n.title}</h3><p class="news-date"><i class="far fa-calendar-alt"></i> ${new Date().toLocaleDateString()}</p><p>${n.desc}</p></div>`; }); document.getElementById('newsContainer').innerHTML = html || '<p>Belum ada berita</p>'; updateAdminNewsList(); }
+    function updateAdminNewsList() { let html = '<strong>Daftar Berita:</strong><ul>'; newsData.forEach((n,idx)=>{ html+=`<li>${n.title} <button onclick="deleteNews(${idx})" style="background:#e74c3c; padding:2px 8px; border-radius:12px;">Hapus</button></li>`; }); html+='</ul>'; document.getElementById('newsListAdmin').innerHTML = html; }
+    window.deleteNews = function(idx) { newsData.splice(idx,1); renderNews(); saveData(); };
+    function saveData() { localStorage.setItem('mixiNews', JSON.stringify(newsData)); localStorage.setItem('mixiCustom', JSON.stringify(customData)); }
+    
+    let customData = { logoUrl:'mixi.png', heroTitle:'Komunitas Pecinta Xpander Indonesia', heroDesc:'Satu hati, satu rasa, satu asap knalpot.', heroImg:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1200&h=600&fit=crop', aboutText:'MIXI adalah wadah resmi bagi penggemar Mitsubishi Xpander.', aboutImg:'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=600&h=400&fit=crop', joinImg:'https://images.unsplash.com/photo-1567188040759-fb6b883af696?w=800&h=300&fit=crop' };
+    function applyCustom() { document.getElementById('heroTitle').innerText = customData.heroTitle; document.getElementById('heroDesc').innerText = customData.heroDesc; document.getElementById('heroImage').src = customData.heroImg; document.getElementById('aboutText').innerText = customData.aboutText; document.getElementById('aboutImage').src = customData.aboutImg; document.getElementById('joinImage').src = customData.joinImg; let logo = document.getElementById('logoImage'); if(customData.logoUrl) { logo.src = customData.logoUrl; logo.style.display = 'block'; document.getElementById('fallbackLogo').style.display = 'none'; } }
+    function loadData() { let savedNews = localStorage.getItem('mixiNews'); if(savedNews) newsData = JSON.parse(savedNews); let savedCustom = localStorage.getItem('mixiCustom'); if(savedCustom) customData = JSON.parse(savedCustom); applyCustom(); renderNews(); }
+    function fillForm() { document.getElementById('adminLogoUrl').value = customData.logoUrl; document.getElementById('adminHeroTitle').value = customData.heroTitle; document.getElementById('adminHeroDesc').value = customData.heroDesc; document.getElementById('adminHeroImg').value = customData.heroImg; document.getElementById('adminAboutText').value = customData.aboutText; document.getElementById('adminAboutImg').value = customData.aboutImg; document.getElementById('adminJoinImg').value = customData.joinImg; }
+    
+    document.getElementById('applyChangesBtn').onclick = () => { customData.logoUrl = document.getElementById('adminLogoUrl').value; customData.heroTitle = document.getElementById('adminHeroTitle').value; customData.heroDesc = document.getElementById('adminHeroDesc').value; customData.heroImg = document.getElementById('adminHeroImg').value; customData.aboutText = document.getElementById('adminAboutText').value; customData.aboutImg = document.getElementById('adminAboutImg').value; customData.joinImg = document.getElementById('adminJoinImg').value; applyCustom(); saveData(); alert('Perubahan disimpan!'); };
+    document.getElementById('resetDefaultBtn').onclick = () => { localStorage.clear(); location.reload(); };
+    document.getElementById('addNewsBtn').onclick = () => { let t = document.getElementById('newsTitle').value; let d = document.getElementById('newsDesc').value; let i = document.getElementById('newsImage').value; if(t && d) { newsData.unshift({title:t, desc:d, img:i || 'https://placehold.co/400x200?text=Berita'}); renderNews(); saveData(); document.getElementById('newsTitle').value=''; document.getElementById('newsDesc').value=''; document.getElementById('newsImage').value=''; } else alert('Isi judul dan deskripsi'); };
+    
+    loadData(); fillForm();
+    
+    // BUKA TUTUP ADMIN PANEL
+    document.getElementById('adminOpenBtn').onclick = () => document.getElementById('adminPanel').classList.add('open');
+    document.getElementById('adminCloseBtn').onclick = () => document.getElementById('adminPanel').classList.remove('open');
+    
+    // DARK MODE
+    document.getElementById('darkmode-toggle').onclick = () => { document.body.classList.toggle('dark'); };
+    
+    // BUTTON ACTIONS
+    document.getElementById('joinCommunityBtn').onclick = () => window.open('https://wa.me/6281222322486');
+    document.getElementById('joinNowBtn').onclick = () => window.open('https://wa.me/6281222322486');
+    document.getElementById('partnerBtn').onclick = () => alert('Hubungi mixipusat@gmail.com');
+    document.getElementById('partnerNowBtn').onclick = () => alert('Kirim proposal ke mixipusat@gmail.com');
+    
+    // BAHASA
+    let en = false;
+    document.getElementById('lang-toggle').onclick = () => { en = !en; document.getElementById('heroTitle').innerText = en ? 'Mitsubishi Xpander Lovers Community' : customData.heroTitle; document.getElementById('heroDesc').innerText = en ? 'One heart, one soul.' : customData.heroDesc; };
+  </script>
+</body>
+</html>
